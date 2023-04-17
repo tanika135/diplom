@@ -27,7 +27,7 @@ class CountRequestsMiddleware:
         self.exceptions_count = 0
 
     def __call__(self, request: HttpRequest):
-        time_delay = 10
+        time_delay = 1
         if not self.request_time:
             print('The first request after launch')
         else:
