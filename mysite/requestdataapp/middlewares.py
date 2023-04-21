@@ -27,14 +27,15 @@ class CountRequestsMiddleware:
         self.exceptions_count = 0
 
     def __call__(self, request: HttpRequest):
-        time_delay = 1
-        if not self.request_time:
-            print('The first request after launch')
-        else:
-            if (round(time.time()) * 1) - self.request_time['time'] < time_delay \
-                    and self. request_time['ip_address'] == request.META.get('REMOTE_ADDR'):
-                print('The limit on the number of requests has been exceeded')
-                return render(request, 'requestdataapp/error-request.html')
+
+        # time_delay = 1
+        # if not self.request_time:
+        #     print('The first request after launch')
+        # else:
+        #     if (round(time.time()) * 1) - self.request_time['time'] < time_delay \
+        #             and self. request_time['ip_address'] == request.META.get('REMOTE_ADDR'):
+        #         print('The limit on the number of requests has been exceeded')
+        #         return render(request, 'requestdataapp/error-request.html')
 
         self.request_time = {'time': round(time.time()) * 1, 'ip_address': request.META.get('REMOTE_ADDR')}
 
