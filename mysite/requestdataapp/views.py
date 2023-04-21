@@ -27,14 +27,11 @@ def user_form(request: HttpRequest) -> HttpResponse:
 def handle_file_upload(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
-        print('test1')
         if form.is_valid():
-            print('test2')
             # myfile = request.FILES['myfile']
             myfile = form.cleaned_data['file']
             fs = FileSystemStorage()
             if myfile.size > 1048576:
-                print('test3')
                 return render(request, 'requestdataapp/error-message.html')
             else:
                 filename = fs.save(myfile.name, myfile)
