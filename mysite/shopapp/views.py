@@ -156,6 +156,23 @@ class OrderDetailView(DetailView):
     )
 
 
+class OrderUpdateView(UpdateView):
+    model = Order
+    fields = 'delivery_address', 'promocode', 'user', 'products'
+    template_name_suffix = '_update_form'
+
+    def get_success_url(self):
+        return reverse(
+            'shopapp:order_details',
+            kwargs={'pk': self.object.pk}
+        )
+
+
+class OrderDeleteView(DeleteView):
+    model = Order
+    success_url = reverse_lazy('shopapp:orders_list')
+
+
     # print(request.path)
     # print(request.method)
     # print(request.headers)
