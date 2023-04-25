@@ -121,6 +121,11 @@ class ProductCreateView(UserPassesTestMixin, CreateView):
     fields = 'name', 'price', 'description', 'discount'
     success_url = reverse_lazy('shopapp:products_list')
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        responce = super().form_valid(form)
+        return responce
+
 
 class ProductUpdateView(UpdateView):
     model = Product

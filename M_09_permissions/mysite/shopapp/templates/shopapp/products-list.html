@@ -22,9 +22,15 @@
   {% else %}
     <h3>No products yet</h3>
   {% endif %}
+1231231232
+  {% if 'shopapp1' in perms %}
+      {% if 'shopapp.add_product' in perms %}
+          <div>
+              <a href="{% url 'shopapp:product_create' %}"
+              >Create a new product</a>
+          </div>
+      {% endif %}
+  {% endif %}
 
-  <div>
-    <a href="{% url 'shopapp:product_create' %}"
-      >Create a new product</a>
-  </div>
+
 {% endblock %}
