@@ -6,7 +6,6 @@ from .views import (
     set_cookie_view,
     get_session_view,
     set_session_view,
-    logout_view,
     MyLogoutView,
     AboutMeView,
     RegisterView,
