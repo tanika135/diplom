@@ -127,10 +127,18 @@ class ProductCreateView(UserPassesTestMixin, CreateView):
         return responce
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UserPassesTestMixin, UpdateView):
     model = Product
     fields = 'name', 'price', 'description', 'discount'
     template_name_suffix = '_update_form'
+    permission_required = 'shopapp.change_product'
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        else:
+            return self.get_object().created_by == self.request.user \
+                or self.request.user.has_perm(self.permission_required)
 
     def get_success_url(self):
         return reverse(
