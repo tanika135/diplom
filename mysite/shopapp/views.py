@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+
 from .forms import ProductForm, OrderForm
 from .forms import GroupForm
 from .models import Product, Order
@@ -73,22 +75,22 @@ class ProductsListView(ListView):
 #     return render(request, 'shopapp/products-list.html', context=context)
 
 
-def create_product(request: HttpRequest) -> HttpResponse:
-    if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            # Product.objects.create(**form.cleaned_data)
-            form.save()
-            url = reverse('shopapp:products_list')
-            return redirect(url)
-    else:
-        form = ProductForm()
-    context = {
-        'form': form,
-    }
-    return render(request,  'shopapp/create-product.html', context=context)
-
-
+# def create_product(request: HttpRequest) -> HttpResponse:
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST)
+#         if form.is_valid():
+#             # Product.objects.create(**form.cleaned_data)
+#             form.save()
+#             url = reverse('shopapp:products_list')
+#             return redirect(url)
+#     else:
+#         form = ProductForm()
+#     context = {
+#         'form': form,
+#     }
+#     return render(request,  'shopapp/create-product.html', context=context)
+#
+#
 def create_order(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -111,16 +113,32 @@ def create_order(request: HttpRequest) -> HttpResponse:
 #     }
 #     return render(request, 'shopapp/order_list.html', context=context)
 
-class ProductCreateView(CreateView):
+class ProductCreateView(UserPassesTestMixin, CreateView):
+    def test_func(self):
+        #return self.request.user.groups.filter(name='secret_group').exists()
+        return self.request.user.is_superuser
     model = Product
     fields = 'name', 'price', 'description', 'discount'
     success_url = reverse_lazy('shopapp:products_list')
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        responce = super().form_valid(form)
+        return responce
 
-class ProductUpdateView(UpdateView):
+
+class ProductUpdateView(UserPassesTestMixin, UpdateView):
     model = Product
     fields = 'name', 'price', 'description', 'discount'
     template_name_suffix = '_update_form'
+    permission_required = 'shopapp.change_product'
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        else:
+            return self.get_object().created_by == self.request.user \
+                or self.request.user.has_perm(self.permission_required)
 
     def get_success_url(self):
         return reverse(
@@ -140,7 +158,7 @@ class ProductDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
 
 
-class OrdersListView(ListView):
+class OrdersListView(LoginRequiredMixin, ListView):
     queryset = (
         Order.objects
         .select_related('user')
@@ -148,7 +166,8 @@ class OrdersListView(ListView):
     )
 
 
-class OrderDetailView(DetailView):
+class OrderDetailView(PermissionRequiredMixin, DetailView):
+    permission_required = 'shopapp.view_order'
     queryset = (
         Order.objects
         .select_related('user')
