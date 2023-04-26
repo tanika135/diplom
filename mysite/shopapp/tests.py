@@ -62,7 +62,9 @@ class ProductDetailsViewTestCase(TestCase):
 
 class ProductsListViewTestCase(TestCase):
     fixtures = [
-        'products-fixtures.json'
+        'products-fixtures.json',
+        'auth-fixtures.json',
+
     ]
 
     def test_products(self):
@@ -73,12 +75,13 @@ class ProductsListViewTestCase(TestCase):
         # products_ = response.context['products']
         # for p, p_ in zip(products, products_):
         #     self.assertEquals(p.pk, p_.pk)
-        self.assertQuerySetEqual(
+
+        self.assertQuerysetEqual(
             qs=Product.objects.filter(archived=False).all(),
             values=(p.pk for p in response.context['products']),
             transform=lambda p: p.pk,
         )
-        self.assertTemplateUsed(response, 'shopapp/products_list.html')
+        self.assertTemplateUsed(response, 'shopapp/products-list.html')
 
 
 class OrdersListViewTestCase(TestCase):
