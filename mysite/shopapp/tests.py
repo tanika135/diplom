@@ -2,11 +2,11 @@ from string import ascii_letters
 from random import choices
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.test import TestCase
 from django.urls import reverse
 
-from shopapp.models import Product
+from shopapp.models import Product, Order
 from shopapp.utils import add_two_numbers
 
 
@@ -84,6 +84,59 @@ class ProductsListViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'shopapp/products-list.html')
 
 
+class OrderDetailViewTestCase(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.user = User.objects.create_user(username='bob_test', password='qwerty')
+        permission_view_order = Permission.objects.get(codename='view_order')
+        cls.user.user_permissions.add(permission_view_order)
+        cls.product = Product.objects.create(name='Best Product')
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.user.delete()
+        cls.product.delete()
+        cls.order.delete()
+
+    def setUp(self) -> None:
+        self.client.force_login(self.user)
+        __class__.order = Order.objects.create(
+            delivery_address='Test',
+            promocode='10Test',
+            user=self.user
+        )
+        __class__.order.products.set([self.product])
+
+    # def test_create_order(self):
+    #     response = self.client.post(
+    #         reverse('shopapp:create_order'),
+    #         {
+    #             'delivery_address': 'Test',
+    #             'promocode': '10test',
+    #             'user': self.user.id,
+    #             'products': [self.product.id],
+    #         }
+    #     )
+    #     self.assertRedirects(response, reverse('shopapp:orders_list'))
+        # self.assertTrue(
+        #     Order.products.filter(name=self.).exists()
+        # )
+
+    # def tearDown(self) -> None:
+    #     self.objects.delete()
+
+    def test_order_details(self):
+        response = self.client.get(
+            reverse('shopapp:order_details', kwargs={'pk': __class__.order.pk})
+        )
+
+        self.assertContains(response, __class__.order.delivery_address)
+        self.assertContains(response, __class__.order.promocode)
+        response_order = response.context['order']
+        self.assertEqual(response_order.pk, __class__.order.pk)
+
+
 class OrdersListViewTestCase(TestCase):
 
     @classmethod
@@ -108,6 +161,32 @@ class OrdersListViewTestCase(TestCase):
         self.assertIn(str(settings.LOGIN_URL), response.url)
 
 
+class ProductsExportViewTestCase(TestCase):
+    fixtures = [
+        'products-fixtures.json',
+        'auth-fixtures.json',
+    ]
+
+    def test_get_products_view(self):
+        response = self.client.get(
+            reverse('shopapp:products-export'),
+        )
+        self.assertEqual(response.status_code, 200)
+        products = Product.objects.order_by('pk').all()
+        expected_data = [
+            {
+                'pk': product.pk,
+                'name': product.name,
+                'price': str(product.price),
+                'archived': product.archived,
+            }
+            for product in products
+        ]
+        products_data = response.json()
+        self.assertEqual(
+            products_data['products'],
+            expected_data,
+        )
 
 
 
