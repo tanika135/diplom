@@ -212,13 +212,17 @@ class OrdersExportView(View):
         orders = Order.objects.order_by('pk').all()
         orders_data = [
             {
-                'delivery_address': 'Test',
-                'promocode': '10Test',
-                'user': self.user,
+                'ID': orders.id,
+                'delivery_address': orders.name,
+                'promocode': orders.promocode,
+                'user': orders.user,
+                'products': orders.product,
             }
-            for product in orders
+            for order in orders
         ]
         return JsonResponse({'orders': orders_data})
+
+
 
     # print(request.path)
     # print(request.method)

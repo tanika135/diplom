@@ -189,4 +189,33 @@ class ProductsExportViewTestCase(TestCase):
         )
 
 
+class OrdersExportViewTestCase(TestCase):
+    fixtures = [
+        'products-fixtures.json',
+        'auth-fixtures.json',
+        'orders-fixtures.json',
+    ]
+
+    def test_get_orders_view(self):
+        response = self.client.get(
+            reverse('shopapp:orders-export'),
+        )
+        self.assertEqual(response.status_code, 200)
+        orders = Order.objects.order_by('pk').all()
+        expected_data = [
+            {
+                'ID': orders.id,
+                'delivery_address': orders.name,
+                'promocode': orders.promocode,
+                'user': orders.user,
+                'products': orders.product,
+            }
+            for order in orders
+        ]
+        orders_data = response.json()
+        self.assertEqual(
+            orders_data['orders'],
+            expected_data,
+        )
+
 
