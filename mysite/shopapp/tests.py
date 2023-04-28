@@ -41,10 +41,12 @@ class ProductCreateViewTestCase(TestCase):
 class ProductDetailsViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
+        super().setUpClass()
         cls.product = Product.objects.create(name='Best Product')
 
     @classmethod
     def tearDownClass(cls):
+        super().tearDownClass()
         cls.product.delete()
 
     def test_get_product(self):
@@ -88,6 +90,7 @@ class OrderDetailViewTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls):
+        super().setUpClass()
         cls.user = User.objects.create_user(username='bob_test', password='qwerty')
         permission_view_order = Permission.objects.get(codename='view_order')
         cls.user.user_permissions.add(permission_view_order)
@@ -95,6 +98,7 @@ class OrderDetailViewTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        super().tearDownClass()
         cls.user.delete()
         cls.product.delete()
         cls.order.delete()
@@ -141,10 +145,12 @@ class OrdersListViewTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls):
+        super().setUpClass()
         cls.user = User.objects.create_user(username='bob_test', password='qwerty')
 
     @classmethod
     def tearDownClass(cls):
+        super().tearDownClass()
         cls.user.delete()
 
     def setUp(self) -> None:
