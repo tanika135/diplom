@@ -58,6 +58,7 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
         }),
     ]
 
+
     def description_short(self, obj: Product) -> str:
         if len(obj.description) < 48:
             return obj.description
