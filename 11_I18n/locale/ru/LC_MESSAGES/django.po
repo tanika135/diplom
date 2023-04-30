@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-30 17:09+0000\n"
+"POT-Creation-Date: 2023-04-30 17:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,10 +36,28 @@ msgstr "Цена"
 msgid "good"
 msgstr "товары"
 
+#: app_logic/apps.py:7
+msgid "logic"
+msgstr "логика"
+
+#: app_pages/apps.py:7
+msgid "pages"
+msgstr "страницы"
+
 #: app_pages/views.py:12
 #, python-format
 msgid "Hello there! Today is %(date)s %(time)s"
 msgstr "Привет! Сегодня %(date)s %(time)s"
+
+#: app_users/apps.py:7 app_users/models.py:10
+msgid "users"
+msgstr "пользователи"
+
+#: app_users/models.py:11
+#, fuzzy
+#| msgid "users"
+msgid "user"
+msgstr "пользователь"
 
 #: templates/employment/vacancy.html:6 templates/employment/vacancy.html:10
 msgid "Vacancy"
