@@ -2,11 +2,11 @@
 {% load i18n %}
 
 {% block title %}
-    Главная страница
+    {% trans "Main page" %}
 {% endblock %}
 
 {% block body %}
-    <h1>Добро пожаловать!</h1>
+    <h1>{% trans "Welcome!" %}</h1>
     <h1>{{ greetings_message }}</h1>
 {% endblock %}
 

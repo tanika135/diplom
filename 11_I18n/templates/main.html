@@ -2,18 +2,18 @@
 {% load i18n %}
 
 {% block title %}
-    Main page
+    {% trans "Main page" %}
 {% endblock %}
 
 {% block body %}
     {% if request.user.is_authenticated %}
-        Добро пожаловать на сайт, {{ request.user.first_name }}
+        {% trans "Welcome to the site" %}, {{ request.user.first_name }}
 
-        <p>День рождения: {{ request.user.profile.date_of_birth }}</p>
-        <p>Город: {{ request.user.profile.city }}</p>
+        <p>{% trans "Date of birth" %}: {{ request.user.profile.date_of_birth }}</p>
+        <p>{% trans "City" %}: {{ request.user.profile.city }}</p>
     {% else %}
-        Вы неавторизованы на нашем сайте.
-        <a href="{% url 'login' %}">Войти</a>
+        {% trans "You are not authorized" %}.
+        <a href="{% url 'login' %}">{% trans "Enter" %}</a>
     {% endif %}
-    <h2>Я - главная страница</h2>
+    <h2>{% trans "I am the main page" %}</h2>
 {% endblock %}
