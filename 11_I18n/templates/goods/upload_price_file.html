@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Загрузка файла с ценами</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load i18n %}
 
-<h2></h2>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Загрузить файл</button>
-</form>
+{% block title %}
+    Загрузка файла с ценами
+{% endblock %}
 
-</body>
-</html>
+{% block body %}
+    <h2>Загрузка файла с ценами</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Загрузить файл</button>
+    </form>
+{% endblock %}
+
