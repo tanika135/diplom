@@ -2,21 +2,21 @@
 {% load i18n %}
 
 {% block title %}
-    Профиль
+    {% trans "Profile" %}
 {% endblock %}
 
 {% block body %}
     {% if request.user.is_authenticated %}
-        Добро пожаловать на сайт, {{ request.user.username }}
+        {% trans "Welcome to the site" %}, {{ request.user.username }}
         {% if request.user.avatar %}
             <p>
             <img src="{{ request.user.avatar.url }}" alt="Smiley face" width="250" height="250">
             </p>
         {% else %}
-            <p>Аватар не загружен</p>
+            <p>{% trans "Avatar is not loaded" %}</p>
         {% endif %}
     {% else %}
-        Вы неавторизованы на нашем сайте.
-        <a href="{% url 'login' %}">Войти</a>
+        {% trans "You are not authorized" %}.
+        <a href="{% url 'login' %}">{% trans "Enter" %}</a>
     {% endif %}
 {% endblock %}

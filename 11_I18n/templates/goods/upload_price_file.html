@@ -2,15 +2,15 @@
 {% load i18n %}
 
 {% block title %}
-    Загрузка файла с ценами
+    {% trans "Price upload page" %}
 {% endblock %}
 
 {% block body %}
-    <h2>Загрузка файла с ценами</h2>
+    <h2>{% trans "Price upload page" %}</h2>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Загрузить файл</button>
+      <button type="submit">{% trans "Upload file" %}</button>
     </form>
 {% endblock %}
 

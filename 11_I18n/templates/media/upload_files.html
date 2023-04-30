@@ -2,14 +2,14 @@
 {% load i18n %}
 
 {% block title %}
-    Загрузка файлов
+    {% trans "Upload file page" %}
 {% endblock %}
 
 {% block body %}
-    <h2>Загрузка файлов</h2>
+    <h2>{% trans "Upload file page" %}</h2>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Загрузить файлы</button>
+      <button type="submit">{% trans "Upload files" %}</button>
     </form>
 {% endblock %}

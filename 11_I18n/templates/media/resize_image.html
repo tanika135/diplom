@@ -2,14 +2,14 @@
 {% load i18n %}
 
 {% block title %}
-    Уменьшение изображения
+    {% trans "Resize image page" %}
 {% endblock %}
 
 {% block body %}
-    <h2>Уменьшение изображения</h2>
+    <h2>{% trans "Resize image page" %}</h2>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Уменьшить картинку</button>
+      <button type="submit">{% trans "Resize image" %}</button>
     </form>
 {% endblock %}

@@ -2,13 +2,13 @@
 {% load i18n %}
 
 {% block title %}
-    Изменения профиля
+    {% trans "Edit profile" %}
 {% endblock %}
 
 {% block body %}
     <form method = "post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Обновить</button>
+        <button type="submit">{% trans "Update" %}</button>
     </form>
 {% endblock %}

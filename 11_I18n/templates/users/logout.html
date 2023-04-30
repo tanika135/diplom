@@ -2,10 +2,10 @@
 {% load i18n %}
 
 {% block title %}
-    Title
+    {% trans "Page" %}
 {% endblock %}
 
 {% block body %}
-    <h2>Логаут</h2>
-    Вы успешно вышли из под вашей учетной записи!
+    <h2>{% trans "Logout" %}</h2>
+    {% trans "You are successfuly logged out" %}!
 {% endblock %}

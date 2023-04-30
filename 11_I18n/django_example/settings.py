@@ -120,7 +120,7 @@ USE_TZ = True
 LANGUAGES = [
     ('ru', 'Русский'),
     ('en', 'English'),
-    ('de', 'Deutsche'),
+    # ('de', 'Deutsche'),
 ]
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]

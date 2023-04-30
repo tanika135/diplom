@@ -2,14 +2,14 @@
 {% load i18n %}
 
 {% block title %}
-    Страница
+    {% trans "Page" %}
 {% endblock %}
 
 {% block body %}
-    <h2>Страница входа</h2>
+    <h2>{% trans "Enter page" %}</h2>
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Login</button>
+      <button type="submit">{% trans "Enter" %}</button>
     </form>
 {% endblock %}

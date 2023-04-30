@@ -2,17 +2,17 @@
 {% load i18n %}
 
 {% block title %}
-    Список товаров
+    {% trans "Products list" %}
 {% endblock %}
 
 {% block body %}
-    <h1>Список товаров</h1>
+    <h1>Список товаров{% trans "Products list" %}</h1>
     {% if items_list %}
         <table border="1">
             <tbody>
             <tr>
-                <td>Артикул</td>
-                <td>Цена</td>
+                <td>{% trans "Code" %}</td>
+                <td>{% trans "Price" %}</td>
             </tr>
             {% for item in items_list %}
                 <tr>
@@ -25,7 +25,7 @@
         </table>
 
     {% else %}
-        <p>Товаров нет.</p>
+        <p>{% trans "No products" %}.</p>
     {% endif %}
 {% endblock %}
 
