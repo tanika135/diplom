@@ -5,14 +5,39 @@
 {% endblock %}
 
 {% block body %}
-    <h1>User info</h1>
+    <h1>User {{ profile.user.first_name }} info</h1>
     {% if user.is_authenticated %}
         <h2>Detail</h2>
-        <p>Username: {{ user.username }}</p>
-        <p>First name: {{ user.first_name }}</p>
-        <p>Last name: {{ user.last_name }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Bio: {{ user.profile.bio }}</p>
+        <p>Username: {{ profile.user.username }}</p>
+        <p>First name: {{ profile.user.first_name }}</p>
+        <p>Last name: {{ profile.user.last_name }}</p>
+        <p>Email: {{ profile.user.email }}</p>
+        <p>Bio: {{ profile.user.profile.bio }}</p>
+        <p>Avatar:</p>
+        <div>
+        {% if profile.preview %}
+            <img src="{{ profile.preview.url }}" alt="{{ profile.preview.name }}">
+        {% else %}
+            <div>No images uploaded yet</div>
+        {% endif %}
+
+        {% if user.is_staff or user.id == profile.user.pk %}
+            <div>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+        {% endif %}
+
+        </div>
+        <br>
+        <div>
+        <a href="{% url 'myauth:profiles-list' %}"
+        >Back to profiles</a>
+        </div>
+
     {% else %}
         <h2>User is anonymous</h2>
     {% endif %}

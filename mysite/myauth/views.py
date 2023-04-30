@@ -1,17 +1,40 @@
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.views import LogoutView
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView
+
+from .forms import ProfileForm
 from .models import Profile
+from .models import User
+# from .forms import ProfileForm
 
 
-class AboutMeView(TemplateView):
+class AboutMeView(DetailView):
+
     template_name = 'myauth/about-me.html'
+    form_class = ProfileForm
+    model = Profile
+    context_object_name = "profile"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.get(id=self.object.pk)
+        if self.request.user.is_staff or self.request.user.id == self.object.user.pk:
+            context["form"] = ProfileForm(instance=profile)
+        return context
+
+    def post(self, request: HttpRequest, pk):
+        profile = Profile.objects.get(id=pk)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save(self)
+        return redirect(request.path)
 
 
 class RegisterView(CreateView):
@@ -32,6 +55,12 @@ class RegisterView(CreateView):
 
         login(request=self.request, user=user)
         return response
+
+
+class ProfilesListView(ListView):
+    template_name = 'myauth/profiles-list.html'
+    model = Profile
+    context_object_name = 'profiles'
 
 
 def login_view(request: HttpRequest) -> HttpResponse:
