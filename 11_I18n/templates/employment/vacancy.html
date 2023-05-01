@@ -1,5 +1,13 @@
-<html>
-    <h1>Вакансии</h1>
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block title %}
+    {% trans "Vacancy" %}
+{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Vacancy" %}</h1>
 
     {% if vacancy_list %}
     <ul>
@@ -12,6 +20,6 @@
 
     </ul>
     {% else %}
-      <p>Вакансий нет.</p>
+      <p>{% trans "No vacancy" %}.</p>
     {% endif %}
-</html>
+{% endblock %}

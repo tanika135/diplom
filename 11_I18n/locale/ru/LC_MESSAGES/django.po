@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 10:15+0000\n"
+"POT-Creation-Date: 2023-04-30 17:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: app_goods/apps.py:7 app_goods/models.py:10
 msgid "goods"
@@ -36,16 +36,124 @@ msgstr "Цена"
 msgid "good"
 msgstr "товары"
 
+#: app_logic/apps.py:7
+msgid "logic"
+msgstr "логика"
+
+#: app_pages/apps.py:7
+msgid "pages"
+msgstr "страницы"
+
 #: app_pages/views.py:12
 #, python-format
 msgid "Hello there! Today is %(date)s %(time)s"
 msgstr "Привет! Сегодня %(date)s %(time)s"
 
-#: templates/greetings.html:6
+#: app_users/apps.py:7 app_users/models.py:10
+msgid "users"
+msgstr "пользователи"
+
+#: app_users/models.py:11
+#, fuzzy
+#| msgid "users"
+msgid "user"
+msgstr "пользователь"
+
+#: templates/employment/vacancy.html:6 templates/employment/vacancy.html:10
+msgid "Vacancy"
+msgstr "Вакансии"
+
+#: templates/employment/vacancy.html:23
+msgid "No vacancy"
+msgstr "Вакансий нет"
+
+#: templates/goods/items_list.html:5 templates/goods/items_list.html:9
+msgid "Products list"
+msgstr "Список товаров"
+
+#: templates/goods/items_list.html:14
+msgid "Code"
+msgstr "Артикул"
+
+#: templates/goods/items_list.html:15
+#, fuzzy
+#| msgid "price"
+msgid "Price"
+msgstr "Цена"
+
+#: templates/goods/items_list.html:28
+msgid "No products"
+msgstr "Товаров нет"
+
+#: templates/goods/upload_price_file.html:5
+#: templates/goods/upload_price_file.html:9
+msgid "Price upload page"
+msgstr "Загрузка файла с ценами"
+
+#: templates/goods/upload_price_file.html:13
+#: templates/media/file_form_upload.html:13 templates/media/upload_file.html:13
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+#: templates/greetings.html:5
 msgid "What time is it?"
 msgstr "Который час?"
 
-#: templates/translation_example.html:6
+#: templates/main.html:5 templates/welcome.html:5
+msgid "Main page"
+msgstr "Главная страница"
+
+#: templates/main.html:10 templates/users/account.html:10
+#, fuzzy
+#| msgid "Welcome to our page"
+msgid "Welcome to the site"
+msgstr "Добро пожаловать на нашу страницу"
+
+#: templates/main.html:12
+msgid "Date of birth"
+msgstr "День рождения"
+
+#: templates/main.html:13
+msgid "City"
+msgstr "Город"
+
+#: templates/main.html:15 templates/users/account.html:19
+msgid "You are not authorized"
+msgstr "Вы неавторизованы на нашем сайте"
+
+#: templates/main.html:16 templates/users/account.html:20
+#: templates/users/login.html:13
+msgid "Enter"
+msgstr "Войти"
+
+#: templates/main.html:18
+msgid "I am the main page"
+msgstr "Я - главная страница"
+
+#: templates/media/file_form_upload.html:5
+#: templates/media/file_form_upload.html:9 templates/media/upload_file.html:5
+#: templates/media/upload_file.html:9 templates/media/upload_files.html:5
+#: templates/media/upload_files.html:9
+#, fuzzy
+#| msgid "Upload file"
+msgid "Upload file page"
+msgstr "Загрузка файла"
+
+#: templates/media/resize_image.html:5 templates/media/resize_image.html:9
+msgid "Resize image page"
+msgstr "Уменьшение изображения"
+
+#: templates/media/resize_image.html:13
+msgid "Resize image"
+msgstr "Уменьшить картинку"
+
+#: templates/media/upload_files.html:13
+#, fuzzy
+#| msgid "Upload file"
+msgid "Upload files"
+msgstr "Загрузить файлы"
+
+#: templates/translation_example.html:5
 msgid "Our translation page title."
 msgstr "Наша переведенная страница"
 
@@ -56,3 +164,59 @@ msgstr "Переведенный текст"
 #: templates/translation_example.html:23
 msgid "Welcome to our page"
 msgstr "Добро пожаловать на нашу страницу"
+
+#: templates/users/account.html:5
+msgid "Profile"
+msgstr "Профиль"
+
+#: templates/users/account.html:16
+msgid "Avatar is not loaded"
+msgstr "Аватар не загружен"
+
+#: templates/users/edit_account.html:5
+#, fuzzy
+#| msgid "Profile"
+msgid "Edit profile"
+msgstr "Изменения профиля"
+
+#: templates/users/edit_account.html:12
+msgid "Update"
+msgstr "Обновить"
+
+#: templates/users/login.html:5 templates/users/logout.html:5
+msgid "Page"
+msgstr "Страница"
+
+#: templates/users/login.html:9
+#, fuzzy
+#| msgid "Enter"
+msgid "Enter page"
+msgstr "Страница входа"
+
+#: templates/users/logout.html:9
+msgid "Logout"
+msgstr "Логаут"
+
+#: templates/users/logout.html:10
+msgid "You are successfuly logged out"
+msgstr "Вы успешно вышли из под вашей учетной записи"
+
+#: templates/users/register.html:5 templates/users/register.html:9
+msgid "Register"
+msgstr "Регистрация"
+
+#: templates/users/register.html:13
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: templates/users/restore_password.html:5
+msgid "Restore password page"
+msgstr "Восстановление пароля"
+
+#: templates/users/restore_password.html:12
+msgid "Restore password"
+msgstr "Восстановить пароль"
+
+#: templates/welcome.html:9
+msgid "Welcome!"
+msgstr "Добро пожаловать!"

@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_logic',
+    'app_logic.apps.AppLogicConfig',
     'app_goods.apps.AppGoodsConfig',
-    'app_users',
-    'app_pages',
+    'app_users.apps.AppUserConfig',
+    'app_pages.apps.AppPagesConfig',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +120,7 @@ USE_TZ = True
 LANGUAGES = [
     ('ru', 'Русский'),
     ('en', 'English'),
-    ('de', 'Deutsche'),
+    # ('de', 'Deutsche'),
 ]
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]

@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Уменьшение изображения</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load i18n %}
 
-<h2></h2>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Уменьшить картинку</button>
-</form>
+{% block title %}
+    {% trans "Resize image page" %}
+{% endblock %}
 
-</body>
-</html>
+{% block body %}
+    <h2>{% trans "Resize image page" %}</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">{% trans "Resize image" %}</button>
+    </form>
+{% endblock %}
