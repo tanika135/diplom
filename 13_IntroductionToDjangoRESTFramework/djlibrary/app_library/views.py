@@ -5,6 +5,7 @@ from app_library.models import Book, Author
 
 
 class BookList(ListModelMixin, CreateModelMixin, GenericAPIView):
+    """Представление списка книг и фильтрация."""
     serializer_class = BookSerializer
 
     def get_queryset(self):
@@ -33,6 +34,7 @@ class BookList(ListModelMixin, CreateModelMixin, GenericAPIView):
 
 
 class AuthorList(ListModelMixin, CreateModelMixin, GenericAPIView):
+    """Представление списка авторов и фильтрация."""
     serializer_class = AuthorSerializer
 
     def get_queryset(self):
