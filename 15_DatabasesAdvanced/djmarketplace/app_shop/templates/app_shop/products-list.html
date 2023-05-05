@@ -1,0 +1,44 @@
+{% extends 'app_shop/base.html' %}
+
+{% block title %}
+    Products list
+{% endblock %}
+
+{% block body %}
+    <h1>Products:</h1>
+    {% if products %}
+        <div>
+        {% for product in products %}
+            <div>
+            <p><a href="{% url 'app_shop:product_details' pk=product.pk %}"
+            >Name: {{ product.name }}</a></p>
+            <p>Price: {{ product.price }}</p>
+            </div>
+
+            <div>
+                Магазины:
+                <ul>
+                    {% for shop in product.shops.all %}
+                        <li>{{ shop.name }}</li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+        {% endfor %}
+        </div>
+
+
+    {% else %}
+        <h3>No products yet</h3>
+    {% endif %}
+
+    {% if 'app_shop' in perms %}
+        {% if 'app_shop.add_product' in perms %}
+            <div>
+                <a href="{% url 'app_shop:product_create' %}"
+                >Create a new product</a>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

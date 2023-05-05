@@ -1,8 +1,11 @@
 from django import forms
-from .models import Profile
+from .models import Balance
 
 
-class ProfileForm(forms.ModelForm):
+class BalanceForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = 'preview',
+        model = Balance
+        fields = 'amount',
+
+
+
