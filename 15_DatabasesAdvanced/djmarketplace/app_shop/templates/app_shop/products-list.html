@@ -5,24 +5,27 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Products:</h1>
+    <h1>Товары:</h1>
     {% if products %}
         <div>
         {% for product in products %}
             <div>
             <p><a href="{% url 'app_shop:product_details' pk=product.pk %}"
-            >Name: {{ product.name }}</a></p>
-            <p>Price: {{ product.price }}</p>
+            >Название: {{ product.name }}</a></p>
+            <p>Цена: {{ product.price }}</p>
             </div>
 
             <div>
-                Магазины:
-                <ul>
-                    {% for shop in product.shops.all %}
-                        <li>{{ shop.name }}</li>
-                    {% endfor %}
-
-                </ul>
+                {% if product.stocks %}
+                    Есть в наличии в следующих магазинах:
+                    <ul>
+                        {% for store in product.stocks %}
+                            <li>{{ store.shop.name }} : {{ store.stock }} шт</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Нет в наличии</p>
+                {% endif %}
             </div>
 
         {% endfor %}

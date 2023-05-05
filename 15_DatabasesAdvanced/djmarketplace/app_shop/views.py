@@ -22,14 +22,14 @@ class ProductCreateView(UserPassesTestMixin, CreateView):
 
 class ProductDetailsView(DetailView):
     template_name = 'app_shop/product-details.html'
-    queryset = Product.objects.prefetch_related('shops')
+    queryset = Product.objects
     context_object_name = 'product'
 
 
 class ProductsListView(ListView):
     template_name = 'app_shop/products-list.html'
     context_object_name = 'products'
-    queryset = Product.objects.filter().prefetch_related('shops')
+    queryset = Product.objects.all()
 
 
 class ShopCreateView(UserPassesTestMixin, CreateView):
