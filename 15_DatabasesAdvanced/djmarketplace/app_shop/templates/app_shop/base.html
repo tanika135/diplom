@@ -9,7 +9,14 @@
     </title>
 </head>
 <body>
-<p><a href="{% url 'app_users:logout' %}">Выйти</a></p>
+<p>
+    <ul>
+        <li><a href="{% url 'app_users:logout' %}">Logout</a></li>
+        <li><a href="{% url 'app_users:about-me' %}">Profile</a></li>
+        <li><a href="{% url 'app_shop:products_list' %}">Catalog</a></li>
+        <li><a href="{% url 'cart:cart_detail' %}">Basket</a></li>
+    </ul>
+</p>
 {% block body %}
 
 {% endblock %}

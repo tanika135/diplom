@@ -16,18 +16,24 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    def add(self, product, quantity=1, update_quantity=False):
+    def add(self, product, shop_id, quantity=1, update_quantity=False):
         """
         Добавить продукт в корзину или обновить его количество.
         """
         product_id = str(product.id)
+        shop = str(shop_id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 0,
-                                     'price': str(product.price)}
-        if update_quantity:
-            self.cart[product_id]['quantity'] = quantity
+            self.cart[product_id] = {
+                'quantity':
+                    {
+
+                    },
+                'price': str(product.price)}
+
+        if update_quantity or shop not in self.cart[product_id]['quantity']:
+            self.cart[product_id]['quantity'][shop] = quantity
         else:
-            self.cart[product_id]['quantity'] += quantity
+            self.cart[product_id]['quantity'][shop] += quantity
         self.save()
 
     def save(self):
@@ -56,25 +62,38 @@ class Cart(object):
             self.cart[str(product.id)]['product'] = product
 
         for item in self.cart.values():
-            item['price'] = Decimal(item['price'])
-            item['total_price'] = item['price'] * item['quantity']
-            yield item
+            for shop, quantity in item['quantity'].items():
+                item['price'] = Decimal(item['price'])
+                item['total_price'] = item['price'] * quantity
+                item['shop_quantity'] = quantity
+                item['shop'] = shop
+                yield item
 
     def __len__(self):
         """
         Подсчет всех товаров в корзине.
         """
-        return sum(item['quantity'] for item in self.cart.values())
+        total = 0
+        for item in self.cart.values():
+            total += self.get_item_quantity(item)
+        return total
+
+    def get_item_quantity(self, item):
+        result = 0
+        for shop, quantity in item['quantity'].items():
+            result += quantity
+        return result
 
     def get_total_price(self):
         """
         Подсчет стоимости товаров в корзине.
         """
-        return sum(Decimal(item['price']) * item['quantity'] for item in
+
+        return sum(Decimal(item['price']) * self.get_item_quantity(item) for item in
                    self.cart.values())
 
     def clear(self):
         # удаление корзины из сессии
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
-        
+

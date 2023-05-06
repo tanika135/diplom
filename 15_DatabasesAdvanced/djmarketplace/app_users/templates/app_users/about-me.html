@@ -1,4 +1,4 @@
-{% extends 'app_users/base.html' %}
+{% extends 'app_shop/base.html' %}
 
 {% block title %}
     About me
@@ -8,11 +8,11 @@
     <h1>User {{ profile.user.first_name }} info</h1>
     {% if user.is_authenticated %}
         <h2>Detail</h2>
-        <p>Имя: {{ profile.user.username }}</p>
-        <p>Баланс : {{ profile.balance }}</p>
-        <p>Статус: {{ profile.status }}</p>
+        <p>Name: {{ profile.user.username }}</p>
+        <p>Balance : {{ profile.balance }}</p>
+        <p>Status: {{ profile.status }}</p>
 
-        <p><a href="{% url 'app_users:add-balance' %}">Пополнить баланс</a></p>
+        <p><a href="{% url 'app_users:add-balance' %}">Refill balance</a></p>
 
     {% else %}
         <h2>User is anonymous</h2>

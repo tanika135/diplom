@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>Product</th>
+            <th>Shop</th>
             <th>Quantity</th>
             <th>Remove</th>
             <th>Unit price</th>
@@ -20,7 +21,8 @@
             {% with product=item.product %}
                 <tr>
                     <td>{{ product.name }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.shop }}</td>
+                    <td>{{ item.shop_quantity }}</td>
                     <td><a href="{% url "cart:cart_remove" product.id%}">Remove</a></td>
                     <td class="num">${{ item.price }}</td>
                     <td class="num">${{ item.total_price }}</td>
@@ -36,6 +38,8 @@
     </table>
     <p class="text-right">
         <a href="{% url "app_shop:products_list" %}" class="button light">Continue shopping</a>
-        <a href="#" class="button">Checkout</a>
+        <a href="{% url "orders:order_create" %}" class="button">
+            Checkout
+        </a>
     </p>
 {% endblock %}
