@@ -14,13 +14,23 @@
                 Есть в наличии в следующих магазинах:
                 <ul>
                     {% for store in product.stocks %}
-                        <li>{{ store.shop.name }} : {{ store.stock }} шт</li>
+                        <li>{{ store.shop.name }} : {{ store.stock }} шт
+                            <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                {{ cart_product_form }}
+                                {% csrf_token %}
+                                <input type="hidden" name="shop" value="{{ store.shop.id }}">
+                                <input type="submit" value="Add to cart">
+                            </form>
+                        </li>
                     {% endfor %}
                 </ul>
             {% else %}
                 <p>Нет в наличии</p>
             {% endif %}
         </div>
+
+    <p class="price">${{ product.price }}</p>
+
 
     </div>
     <div>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'app_users',
     'app_blogs',
     'app_shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,7 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = reverse_lazy('app_users:about-me')
 LOGIN_URL = reverse_lazy('app_users:login')
+
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+CART_SESSION_ID = 'cart'
