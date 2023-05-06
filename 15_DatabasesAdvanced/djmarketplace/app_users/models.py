@@ -1,9 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-
-class History(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+from orders.models import Order, OrderItem
 
 
 class Balance(models.Model):
@@ -19,14 +17,18 @@ class Profile(models.Model):
 
     @property
     def status(self):
-        #result = History.objects.filter(user=self.user)#.aggregate(total=Sum(F))
-        result = 20000
-        if result > 50000:
-            status = 'Платиновый'
-        elif result > 10000:
-            status = 'Золотой'
+        result = 0
+        orders = Order.objects.filter(created_by=self.user)
+        for order in orders:
+            items = OrderItem.objects.filter(order=order)
+            result += sum([item.price*item.quantity for item in items])
+
+        if result > 10000:
+            status = 'Platin'
+        elif result > 2000:
+            status = 'Gold'
         else:
-            status = 'Серебряный'
+            status = 'Silver'
 
         return status
 

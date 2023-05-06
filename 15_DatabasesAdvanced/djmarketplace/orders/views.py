@@ -3,24 +3,24 @@ from django.shortcuts import render
 
 from app_shop.models import Shop, ShopStock
 from app_users.models import Balance
-from .models import OrderItem
+from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
-
+from django.contrib.auth.models import User
 
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
-
-            order = order_transaction(user_id=request.user.id, form=form, cart=cart)
-            if order:
+            try:
+                order = order_transaction(user_id=request.user.id, form=form, cart=cart)
                 return render(request, 'orders/order/created.html',
                               {'order': order})
-            else:
+            except IntegrityError as Error:
                 return render(request, 'orders/order/create.html',
-                              {'cart': cart, 'form': form, 'error': 'error creating order'})
+                              {'cart': cart, 'form': form, 'error': 'error creating order ' + str(Error)})
+
     else:
         form = OrderCreateForm
     return render(request, 'orders/order/create.html',
@@ -47,13 +47,13 @@ def reduce_stock(product_id, shop_id, amount):
 
 
 @transaction.atomic
-def order_transaction(user_id, form, cart):
+def order_transaction(user_id: int, form: OrderCreateForm, cart: Cart) -> Order:
     """Использование atomic как менеджер контекста"""
 
     try:
         with transaction.atomic():
             reduce_user_balance(user_id, cart.get_total_price())
-
+            form.created_by = User.objects.get(pk=user_id)
             order = form.save()
             for item in cart:
                 shop = Shop.objects.get(pk=item['shop'])
@@ -65,8 +65,8 @@ def order_transaction(user_id, form, cart):
                                          shop=shop
                                          )
 
-    except IntegrityError:
-        return False
+    except IntegrityError as Error:
+        raise Error
 
     cart.clear()
     return order
