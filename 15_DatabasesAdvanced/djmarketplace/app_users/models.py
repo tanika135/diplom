@@ -2,6 +2,10 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from orders.models import Order, OrderItem
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class Balance(models.Model):
@@ -24,8 +28,10 @@ class Profile(models.Model):
             result += sum([item.price*item.quantity for item in items])
 
         if result > 10000:
+            logger.info('Переход пользователя по статусной системе')
             status = 'Platin'
         elif result > 2000:
+            logger.info('Переход пользователя по статусной системе')
             status = 'Gold'
         else:
             status = 'Silver'

@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import PermissionRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, LoginView
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -12,6 +12,9 @@ from django.views.generic import TemplateView, CreateView, ListView, DetailView,
 from .forms import BalanceForm
 from .models import Profile, Balance
 from .models import User
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class BalanceUpdateView(UserPassesTestMixin, UpdateView):
@@ -21,6 +24,7 @@ class BalanceUpdateView(UserPassesTestMixin, UpdateView):
     permission_required = 'app_user.change_profile'
 
     def get_object(self, queryset=None):
+        logger.info('Запрошена страница пополнения баланса')
         return Balance.objects.get(user_id=self.request.user.id)
 
     def test_func(self):
@@ -73,22 +77,28 @@ class RegisterView(CreateView):
         return response
 
 
-def login_view(request: HttpRequest) -> HttpResponse:
-    if request.method == 'GET':
-        if request.user.is_authenticated:
-            return redirect('/admin/')
+class MyLoginView(LoginView):
+    def dispatch(self, request, *args, **kwargs):
+        logger.info('Запрошена страница аутентификации')
+        return super().dispatch(request, args, kwargs)
 
-        return render(request, 'app_users/login.html')
-
-    username = request.POST['username']
-    password = request.POST['password']
-
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return redirect('/admin/')
-
-    return render(request, 'app_users/login.html', {'error': 'Invalid login credentials'})
+# def login_view(request: HttpRequest) -> HttpResponse:
+#     if request.method == 'GET':
+#         logger.info('Запрошена страница аутентификации')
+#         if request.user.is_authenticated:
+#             return redirect('/admin/')
+#
+#         return render(request, 'app_users/login.html')
+#
+#     username = request.POST['username']
+#     password = request.POST['password']
+#
+#     user = authenticate(request, username=username, password=password)
+#     if user is not None:
+#         login(request, user)
+#         return redirect('/admin/')
+#
+#     return render(request, 'app_users/login.html', {'error': 'Invalid login credentials'})
 
 
 class MyLogoutView(LogoutView):

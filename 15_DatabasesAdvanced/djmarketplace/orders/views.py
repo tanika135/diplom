@@ -7,6 +7,10 @@ from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from django.contrib.auth.models import User
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def order_create(request):
     cart = Cart(request)
@@ -15,6 +19,7 @@ def order_create(request):
         if form.is_valid():
             try:
                 order = order_transaction(user_id=request.user.id, form=form, cart=cart)
+                logger.info('Запрошена страница оформления заказа')
                 return render(request, 'orders/order/created.html',
                               {'order': order})
             except IntegrityError as Error:
@@ -33,6 +38,7 @@ def reduce_user_balance(user_id, order_size):
     if order_size <= balance.amount:
         balance.amount -= order_size
         balance.save()
+        logger.info('Списание баллов с баланса')
     else:
         raise IntegrityError("not enough money")
 
