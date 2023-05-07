@@ -1,0 +1,36 @@
+{% extends 'app_shop/base.html' %}
+
+{% block title %}
+    Bestsellers report
+{% endblock %}
+
+{% block body %}
+    <h1>Bestsellers report</h1>
+    <div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            Create report
+        </button>
+    </form>
+    </div>
+    <div>
+        {% if report %}
+            <table>
+                <tr>
+                    <th>Product id</th>
+                    <th>Product name</th>
+                    <th>Product quantity</th>
+                </tr>
+            {% for product in report.values %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.quantity }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

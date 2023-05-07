@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_users',
+    'app_blogs',
+    'app_shop',
+    'cart',
+    'orders',
+    'app_report',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +126,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGIN_REDIRECT_URL = reverse_lazy('app_users:about-me')
+LOGIN_URL = reverse_lazy('app_users:login')
+
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+CART_SESSION_ID = 'cart'
