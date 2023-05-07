@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'app_report',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'djmarketplace.urls'
@@ -134,3 +136,58 @@ LOGIN_URL = reverse_lazy('app_users:login')
 # SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CART_SESSION_ID = 'cart'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log'
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+        'propagate': True
+    },
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://238c5381083547faa31666bff2c6922b@o4505144528404480.ingest.sentry.io/4505144539938816",
+    integrations=[
+        DjangoIntegration(),
+    ],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
+"""Вывод в консоли"""
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',
+#     },
+# }
