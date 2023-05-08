@@ -1,11 +1,10 @@
-from django.contrib.auth.views import LoginView
 from django.urls import path
 
 from .views import (
     MyLogoutView,
     AboutMeView,
     RegisterView,
-    BalanceUpdateView,
+    BalanceUpdateView, MyLoginView,
 )
 
 
@@ -15,7 +14,7 @@ urlpatterns = [
     #path('login/', login_view, name='login')
     path(
         'login/',
-        LoginView.as_view(
+        MyLoginView.as_view(
             template_name='app_users/login.html',
             redirect_authenticated_user=True,
         ),
