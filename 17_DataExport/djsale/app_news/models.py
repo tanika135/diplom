@@ -18,7 +18,7 @@ class NewsItem(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('news-item', args=[str(self.id)])
+        return reverse('app_news:news-item', args=[str(self.id)])
 
 
 class NewsType(models.Model):

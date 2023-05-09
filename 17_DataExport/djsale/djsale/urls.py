@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 from app_news.sitemap import NewsSitemap
+from app_static.sitemap import StaticSitemap
 
 
 sitemaps = {
-    'news': NewsSitemap
+    'news': NewsSitemap,
+    'static': StaticSitemap,
 }
 
 urlpatterns = [
