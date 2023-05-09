@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+</head>
+<body>
+<p>
+    <ul>
+        <li><a href="{% url 'app_static:contacts' %}">Contatcs</a></li>
+        <li><a href="{% url 'app_static:about-us' %}">About-us</a></li>
+    </ul>
+</p>
+{% block body %}
+
+{% endblock %}
+</body>
+</html>

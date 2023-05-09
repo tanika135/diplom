@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'app_news',
     'app_rss',
+    'app_static',
 ]
 
 SITE_ID = 1
