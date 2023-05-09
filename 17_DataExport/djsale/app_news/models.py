@@ -35,7 +35,7 @@ class NewsType(models.Model):
 
 class HousingItem(models.Model):
     title = models.CharField(max_length=128, verbose_name='заголовок')
-    type = models.ForeignKey('HousingItem', on_delete=models.CASCADE, related_name='housing', null=True)
+    type = models.ForeignKey('HousingType', on_delete=models.CASCADE, related_name='housing', null=True)
     description = models.TextField(verbose_name='описание жилья')
     published_at = models.DateTimeField(verbose_name='дата публикации', null=True)
 
