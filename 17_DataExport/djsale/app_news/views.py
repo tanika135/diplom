@@ -19,6 +19,14 @@ class NewsItemDetailView(generic.DetailView):
     template_name = 'app_news/newsitem_detail.html'
 
 
-# class HousingItemView()
+class NewsListView(generic.ListView):
+    model = NewsItem
+    context_object_name = 'news'
+    template_name = 'app_news/newsitem_list.html'
 
+
+class HousingItemsListView(generic.ListView):
+    model = HousingItem
+    context_object_name = 'housingitems'
+    template_name = 'app_news/housingitem_list.html'
 

@@ -1,0 +1,18 @@
+{% extends 'app_static/base.html' %}
+
+{% block title %}
+    News list
+{% endblock %}
+
+{% block body %}
+    <h1>News list</h1>
+    {% if news %}
+        <ul>
+        {% for one_news in news %}
+            <li>{{ one_news }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No news yet</h3>
+    {% endif %}
+{% endblock %}

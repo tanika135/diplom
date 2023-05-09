@@ -1,0 +1,18 @@
+{% extends 'app_static/base.html' %}
+
+{% block title %}
+    Housing items
+{% endblock %}
+
+{% block body %}
+    <h1>Housing items</h1>
+    {% if housingitems %}
+        <ul>
+        {% for one in housingitems %}
+            <li>{{ one.title }} - {{ one.description }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No items yet</h3>
+    {% endif %}
+{% endblock %}
