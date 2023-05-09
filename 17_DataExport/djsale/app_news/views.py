@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.core import serializers
 from django.views import generic
 
-from app_news.models import NewsItem
+from app_news.models import NewsItem, HousingItem
 
 
 def get_news_in_custom_format(request):
@@ -17,3 +17,8 @@ def get_news_in_custom_format(request):
 class NewsItemDetailView(generic.DetailView):
     model = NewsItem
     template_name = 'app_news/newsitem_detail.html'
+
+
+# class HousingItemView()
+
+
