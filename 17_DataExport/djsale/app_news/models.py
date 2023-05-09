@@ -57,9 +57,9 @@ class HousingType(models.Model):
 
 
 class NumberOfRooms(models.Model):
+    class Meta:
+        verbose_name = 'комнат'
+        verbose_name_plural = 'комнат'
+
     number = models.PositiveIntegerField(max_length=2)
-
-
-
-
-
+    housing = models.ForeignKey(HousingItem, null=False, on_delete=models.CASCADE)
