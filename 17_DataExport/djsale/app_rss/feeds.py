@@ -19,4 +19,4 @@ class LatestNewsFeed(Feed):
         return item.description
 
     def item_link(self, item: NewsItem) -> str:
-        return reverse('news-item', args=[item.pk])
+        return reverse('app_news:news-item', args=[item.pk])
