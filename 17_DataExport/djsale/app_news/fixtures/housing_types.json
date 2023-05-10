@@ -1,0 +1,1 @@
+[{"model": "app_news.housingtype", "pk": 1, "fields": {"name": "Квартира", "code": "flat"}}, {"model": "app_news.housingtype", "pk": 2, "fields": {"name": "Дом", "code": "house"}}]

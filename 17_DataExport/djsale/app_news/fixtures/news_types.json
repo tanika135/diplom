@@ -1,0 +1,1 @@
+[{"model": "app_news.newstype", "pk": 1, "fields": {"name": "Sport", "code": "sports"}}, {"model": "app_news.newstype", "pk": 4, "fields": {"name": "Culture", "code": "culture"}}]
