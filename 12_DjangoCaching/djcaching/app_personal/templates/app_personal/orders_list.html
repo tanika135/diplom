@@ -1,0 +1,20 @@
+{% extends 'app_shop/base.html' %}
+
+{% block title %}
+    Orders list
+{% endblock %}
+
+{% block body %}
+    <h1>Orders list</h1>
+    {% if oders %}
+        <h2>Detail</h2>
+        <p>Name: {{ profile.user.username }}</p>
+        <p>Balance : {{ profile.balance }}</p>
+        <p>Status: {{ profile.status }}</p>
+
+        <p><a href="{% url 'app_users:add-balance' %}">Refill balance</a></p>
+
+    {% else %}
+        <h2>User is anonymous</h2>
+    {% endif %}
+{% endblock %}

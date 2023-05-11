@@ -22,7 +22,6 @@ urlpatterns = [
         name='login'),
 
     path('logout/', MyLogoutView.as_view(), name='logout'),
-    # path('about-me/', AboutMeView.as_view(), name='about-me'),
     path('register/', RegisterView.as_view(), name='register'),
     path('add-balance/', BalanceUpdateView.as_view(), name='add-balance'),
 ]
