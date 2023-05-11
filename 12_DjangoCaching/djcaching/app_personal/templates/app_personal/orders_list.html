@@ -7,14 +7,11 @@
 {% block body %}
     <h1>Orders list</h1>
     {% if oders %}
-        <h2>Detail</h2>
-        <p>Name: {{ profile.user.username }}</p>
-        <p>Balance : {{ profile.balance }}</p>
-        <p>Status: {{ profile.status }}</p>
-
-        <p><a href="{% url 'app_users:add-balance' %}">Refill balance</a></p>
-
+        {% for order in orders %}
+            {{ order }}
+        {% endfor %}
     {% else %}
-        <h2>User is anonymous</h2>
+        <h3>No orders yet</h3>
     {% endif %}
+    <p><a href="{% url 'app_personal:about-me' %}">Back</a></p>
 {% endblock %}

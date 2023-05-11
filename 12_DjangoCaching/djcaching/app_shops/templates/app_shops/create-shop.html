@@ -1,4 +1,4 @@
-{% extends 'app_shop/base.html' %}
+{% extends 'app_shops/base.html' %}
 
 {% block title %}
     Create order
@@ -17,6 +17,6 @@
     </form>
     </div>
     <div>
-        <a href="{% url 'app_shop:orders_list' %}">Back to orders list</a>
+        <a href="{% url 'app_shops:orders_list' %}">Back to orders list</a>
     </div>
 {% endblock %}

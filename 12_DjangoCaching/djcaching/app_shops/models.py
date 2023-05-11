@@ -7,8 +7,6 @@ class Shop(models.Model):
 
 
 class Product(models.Model):
-    class Meta:
-        ordering = ['name']
 
     name = models.CharField(max_length=100)
     description = models.TextField(null=False, blank=True)
@@ -18,11 +16,20 @@ class Product(models.Model):
     def __str__(self) -> str:
         return f'Product(pk={self.pk}, name={self.name!r})'
 
-    # @property
-    # def stocks(self):
-    #     return ShopStock.objects.filter(product=self.pk)
-    # @property
-    # def shops(self):
-    #     shopsStock = ShopStock.objects.filter(product=self.pk)
-    #     shops = [stock.shop for stock in shopsStock]
-    #     return shops
+    @property
+    def stocks(self):
+        return ShopStock.objects.filter(product=self.pk)
+
+    @property
+    def shops(self):
+        shopsStock = ShopStock.objects.filter(product=self.pk)
+        shops = [stock.shop for stock in shopsStock]
+        return shops
+
+
+class ShopStock(models.Model):
+
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    stock = models.PositiveIntegerField(default=0)
+

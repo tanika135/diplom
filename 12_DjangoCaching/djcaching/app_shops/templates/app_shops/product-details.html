@@ -1,4 +1,4 @@
-{% extends 'app_shop/base.html' %}
+{% extends 'app_shops/base.html' %}
 
 {% block title %}
     Product #{{ product.pk }}
@@ -34,6 +34,6 @@
 
     </div>
     <div>
-        <a href="{% url 'app_shop:products_list' %}">Back to products list</a>
+        <a href="{% url 'app_shops:products_list' %}">Back to products list</a>
     </div>
 {% endblock %}

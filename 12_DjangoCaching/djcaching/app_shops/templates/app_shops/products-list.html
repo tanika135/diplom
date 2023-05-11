@@ -1,4 +1,4 @@
-{% extends 'app_shop/base.html' %}
+{% extends 'app_shops/base.html' %}
 
 {% block title %}
     Products list
@@ -10,7 +10,7 @@
         <div>
         {% for product in products %}
             <div>
-            <p><a href="{% url 'app_shop:product_details' pk=product.pk %}"
+            <p><a href="{% url 'app_shops:product_details' pk=product.pk %}"
             >Название: {{ product.name }}</a></p>
             <p>Цена: {{ product.price }}</p>
             </div>
@@ -36,12 +36,4 @@
         <h3>No products yet</h3>
     {% endif %}
 
-    {% if 'app_shop' in perms %}
-        {% if 'app_shop.add_product' in perms %}
-            <div>
-                <a href="{% url 'app_shop:product_create' %}"
-                >Create a new product</a>
-            </div>
-        {% endif %}
-    {% endif %}
 {% endblock %}

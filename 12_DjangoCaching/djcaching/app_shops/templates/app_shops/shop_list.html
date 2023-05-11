@@ -1,4 +1,4 @@
-{% extends 'app_shop/base.html' %}
+{% extends 'app_shops/base.html' %}
 
 {% block title %}
     Order list
@@ -22,7 +22,7 @@
         <h3>No orders yet</h3>
     {% endif %}
     <div>
-        <a href="{% url 'app_shop:create_shop' %}"
+        <a href="{% url 'app_shops:create_shop' %}"
         >Create a new order</a>
     </div>
 {% endblock %}

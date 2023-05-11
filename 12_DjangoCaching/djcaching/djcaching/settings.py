@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'app_users',
     'app_pages',
     'app_shops',
-    'app_shop',
     'cart',
     'orders',
     'app_personal',
@@ -133,3 +132,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CART_SESSION_ID = 'cart'

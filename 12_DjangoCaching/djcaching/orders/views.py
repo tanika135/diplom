@@ -1,7 +1,7 @@
 from django.db import transaction, IntegrityError
 from django.shortcuts import render
 
-from app_shop.models import ShopStock
+from app_shops.models import ShopStock
 from app_shops.models import Shop
 from app_users.models import Balance
 from .models import OrderItem, Order

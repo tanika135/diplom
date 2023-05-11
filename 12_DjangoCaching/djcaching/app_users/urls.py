@@ -8,11 +8,9 @@ from .views import (
     MyLoginView,
 )
 
-
 app_name = 'app_users'
 
 urlpatterns = [
-    #path('login/', login_view, name='login')
     path(
         'login/',
         MyLoginView.as_view(

@@ -1,5 +1,7 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
+
 from app_users.models import Balance, Profile
+from orders.models import Order
 
 
 class AboutMeView(DetailView):
@@ -12,3 +14,9 @@ class AboutMeView(DetailView):
         profile = Profile.objects.get(user_id=self.request.user.id)
         profile.balance = Balance.objects.get(user_id=self.request.user.id).amount
         return profile
+
+
+class OrdersList(ListView):
+    template_name = 'app_personal/orders_list.html'
+    context_object_name = 'orders'
+    queryset = Order.objects.all()
