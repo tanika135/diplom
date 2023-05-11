@@ -41,3 +41,10 @@ class Actions (models.Model):
     created_from = models.DateTimeField(null=False)
     created_to = models.DateTimeField(null=False)
     products = models.ManyToManyField(Product)
+
+
+class Offers (models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=False, blank=True)
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    active = models.BooleanField(default=False)
