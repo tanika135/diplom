@@ -6,17 +6,16 @@ from django.shortcuts import render
 from django.core.cache import cache
 from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy, reverse
-
+from datetime import datetime
+from app_shops.models import Offers, Actions
+from orders.models import Order
 from .forms import BalanceForm
 from .models import Profile, Balance
 
 
-# def user_account(request):
-    # return render(request, 'app_users/account.html')
-
 def user_account(request):
     username = request.user.username
-    balance = get_balance()
+    balance = get_balance(request.user.id)
 
     promotions_cache_key = 'promotions:{}'.format(username)
     offers_cache_key = 'offers:{}'.format(username)
@@ -29,19 +28,35 @@ def user_account(request):
     }
 
     cache.set_many(user_account_cache_data)
-    payment_history = get_payment_history
+    payment_history = get_payment_history(request.user.id)
 
     # cache.get_or_set(promotions_cache_key, promotions, 30*60)
     # if promotions_cache_key not in cache:
     #     promotions = get_promotions()
     #     cache.set(promotions_cache_key, promotions, 30*60)
 
-    return render(request, 'users/account.html', context={
+    return render(request, 'app_users/about-me.html', context={
         'balance': balance,
         'promotions': promotions,
         'offers': offers,
         'payment_history': payment_history
     })
+
+
+def get_balance(user_id):
+    return Balance.objects.get(user_id=user_id).amount
+
+
+def get_promotions():
+    return Actions.objects.filter(created_from__lte=datetime.now(), created_to__gte=datetime.now())
+
+
+def get_offers():
+    return Offers.objects.filter(active=True)
+
+
+def get_payment_history(user_id):
+    return Order.objects.filter(created_by=user_id)
 
 
 class RegisterView(CreateView):
