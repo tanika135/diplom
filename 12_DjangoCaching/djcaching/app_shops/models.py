@@ -33,3 +33,11 @@ class ShopStock(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     stock = models.PositiveIntegerField(default=0)
 
+
+class Actions (models.Model):
+
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=False, blank=True)
+    created_from = models.DateTimeField(null=False)
+    created_to = models.DateTimeField(null=False)
+    products = models.ManyToManyField(Product)

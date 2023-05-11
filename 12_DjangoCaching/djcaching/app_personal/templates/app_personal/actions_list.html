@@ -1,0 +1,26 @@
+{% extends 'app_shops/base.html' %}
+
+{% block title %}
+    Actions list
+{% endblock %}
+
+{% block body %}
+    <h1>Actions list</h1>
+    {% if actions %}
+        {% for action in actions %}
+            <p>Name #: {{ action.name }}</p>
+            <p>Description: {{ action.description }}</p>
+            <p>Products:
+                <ul>
+                {% for item in action.products.all %}
+                    <li>{{ item.name }}</li>
+                {% endfor %}
+                </ul>
+            </p>
+
+        {% endfor %}
+    {% else %}
+        <h3>No orders yet</h3>
+    {% endif %}
+    <p><a href="{% url 'app_personal:about-me' %}">Back</a></p>
+{% endblock %}

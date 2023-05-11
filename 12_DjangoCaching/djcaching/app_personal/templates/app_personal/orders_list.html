@@ -1,4 +1,4 @@
-{% extends 'app_shop/base.html' %}
+{% extends 'app_shops/base.html' %}
 
 {% block title %}
     Orders list
@@ -6,9 +6,19 @@
 
 {% block body %}
     <h1>Orders list</h1>
-    {% if oders %}
+    {% if orders %}
         {% for order in orders %}
-            {{ order }}
+            <p>Order #: {{ order.id }}</p>
+            <p>Address: {{ order.address }}</p>
+            <p>City: {{ order.city }}</p>
+            <p>Products:
+                <ul>
+                {% for item in order.items.all %}
+                    <li>{{ item.product.name }} - {{ item.price }} - {{ item.quantity }}</li>
+                {% endfor %}
+                </ul>
+            </p>
+
         {% endfor %}
     {% else %}
         <h3>No orders yet</h3>

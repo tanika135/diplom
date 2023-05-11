@@ -12,7 +12,14 @@
         <p>Balance : {{ profile.balance }}</p>
         <p>Status: {{ profile.status }}</p>
 
-        <p><a href="{% url 'app_users:add-balance' %}">Refill balance</a></p>
+        <p>
+            <ul>
+                <li><a href="{% url 'app_personal:orders_list' %}">Orders history</a></li>
+                <li><a href="{% url 'app_personal:actions' %}">Actions</a></li>
+                <li><a href="{% url 'app_personal:sales' %}">Sales</a></li>
+                <li><a href="{% url 'app_personal:balance' %}">Balance</a></li>
+            </ul>
+        </p>
 
     {% else %}
         <h2>User is anonymous</h2>
