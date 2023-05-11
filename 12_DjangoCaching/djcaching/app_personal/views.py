@@ -34,3 +34,16 @@ class ActionsList(ListView):
     def get_queryset(self):
         actions = Actions.objects.filter(created_from__lte=datetime.now(), created_to__gte=datetime.now())
         return actions
+
+
+class BalanceView(DetailView):
+
+    template_name = 'app_personal/balance.html'
+    model = Profile
+    context_object_name = "profile"
+
+    def get_object(self, queryset=None):
+        profile = Profile.objects.get(user_id=self.request.user.id)
+        profile.balance = Balance.objects.get(user_id=self.request.user.id).amount
+        return profile
+

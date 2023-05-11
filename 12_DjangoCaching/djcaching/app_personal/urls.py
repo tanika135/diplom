@@ -1,7 +1,10 @@
 from django.urls import path
 
 from .views import (
-    AboutMeView, OrdersList, ActionsList
+    AboutMeView,
+    OrdersList,
+    ActionsList,
+    BalanceView,
 )
 
 app_name = 'app_personal'
@@ -11,5 +14,5 @@ urlpatterns = [
     path('orders_list/', OrdersList.as_view(), name='orders_list'),
     path('actions/', ActionsList.as_view(), name='actions'),
     path('sales/', OrdersList.as_view(), name='sales'),
-    path('balance/', OrdersList.as_view(), name='balance'),
+    path('balance/', BalanceView.as_view(), name='balance'),
 ]
