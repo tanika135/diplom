@@ -1,27 +1,29 @@
 {% extends 'app_shops/base.html' %}
-
+{% load cache %}
 {% block title %}
     Orders list
 {% endblock %}
 
-{% block body %}
-    <h1>Orders list</h1>
-    {% if orders %}
-        {% for order in orders %}
-            <p>Order #: {{ order.id }}</p>
-            <p>Address: {{ order.address }}</p>
-            <p>City: {{ order.city }}</p>
-            <p>Products:
-                <ul>
-                {% for item in order.items.all %}
-                    <li>{{ item.product.name }} - {{ item.price }} - {{ item.quantity }}</li>
-                {% endfor %}
-                </ul>
-            </p>
+{% cache 500 orders_list %}
+    {% block body %}
+        <h1>Orders list</h1>
+        {% if orders %}
+            {% for order in orders %}
+                <p>Order #: {{ order.id }}</p>
+                <p>Address: {{ order.address }}</p>
+                <p>City: {{ order.city }}</p>
+                <p>Products:
+                    <ul>
+                    {% for item in order.items.all %}
+                        <li>{{ item.product.name }} - {{ item.price }} - {{ item.quantity }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
 
-        {% endfor %}
-    {% else %}
-        <h3>No orders yet</h3>
-    {% endif %}
-    <p><a href="{% url 'app_personal:about-me' %}">Back</a></p>
-{% endblock %}
+            {% endfor %}
+        {% else %}
+            <h3>No orders yet</h3>
+        {% endif %}
+        <p><a href="{% url 'app_personal:about-me' %}">Back</a></p>
+    {% endblock %}
+{% endcache %}
