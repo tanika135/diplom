@@ -1,0 +1,47 @@
+{% extends 'app_shop/base.html' %}
+
+{% block title %}
+    Products list
+{% endblock %}
+
+{% block body %}
+    <h1>Товары:</h1>
+    {% if products %}
+        <div>
+        {% for product in products %}
+            <div>
+            <p><a href="{% url 'app_shop:product_details' pk=product.pk %}"
+            >Название: {{ product.name }}</a></p>
+            <p>Цена: {{ product.price }}</p>
+            </div>
+
+            <div>
+                {% if product.stocks %}
+                    Есть в наличии в следующих магазинах:
+                    <ul>
+                        {% for store in product.stocks %}
+                            <li>{{ store.shop.name }} : {{ store.stock }} шт</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Нет в наличии</p>
+                {% endif %}
+            </div>
+
+        {% endfor %}
+        </div>
+
+
+    {% else %}
+        <h3>No products yet</h3>
+    {% endif %}
+
+    {% if 'app_shop' in perms %}
+        {% if 'app_shop.add_product' in perms %}
+            <div>
+                <a href="{% url 'app_shop:product_create' %}"
+                >Create a new product</a>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
