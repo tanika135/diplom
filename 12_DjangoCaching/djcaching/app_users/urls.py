@@ -1,6 +1,28 @@
-from rest_framework import routers
-from app_users.api import UserViewSet
+from django.urls import path
 
-router = routers.DefaultRouter()
-router.register('users', UserViewSet)
-urlpatterns = router.urls
+from .views import (
+    MyLogoutView,
+    # AboutMeView,
+    RegisterView,
+    BalanceUpdateView,
+    MyLoginView,
+)
+
+
+app_name = 'app_users'
+
+urlpatterns = [
+    #path('login/', login_view, name='login')
+    path(
+        'login/',
+        MyLoginView.as_view(
+            template_name='app_users/login.html',
+            redirect_authenticated_user=True,
+        ),
+        name='login'),
+
+    path('logout/', MyLogoutView.as_view(), name='logout'),
+    # path('about-me/', AboutMeView.as_view(), name='about-me'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('add-balance/', BalanceUpdateView.as_view(), name='add-balance'),
+]
