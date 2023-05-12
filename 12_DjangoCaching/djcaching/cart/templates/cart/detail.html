@@ -1,19 +1,20 @@
 {% extends "app_pages/base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %}
-    Your shopping cart
+    {% translate 'Your shopping cart' %}
 {% endblock %}
 {% block body %}
-    <h1>Your shopping cart</h1>
+    <h1>{% translate 'Your shopping cart' %}</h1>
     <table class="cart">
         <thead>
         <tr>
-            <th>Product</th>
-            <th>Shop</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-            <th>Unit price</th>
-            <th>Price</th>
+            <th>{% translate 'Product' %}</th>
+            <th>{% translate 'Shop' %}</th>
+            <th>{% translate 'Quantity' %}</th>
+            <th>{% translate 'Remove' %}</th>
+            <th>{% translate 'Unit price' %}</th>
+            <th>{% translate 'Price' %}</th>
         </tr>
         </thead>
         <tbody>
@@ -23,23 +24,23 @@
                     <td>{{ product.name }}</td>
                     <td>{{ item.shop }}</td>
                     <td>{{ item.shop_quantity }}</td>
-                    <td><a href="{% url "cart:cart_remove" product.id%}">Remove</a></td>
+                    <td><a href="{% url "cart:cart_remove" product.id%}">{% translate 'Remove' %}</a></td>
                     <td class="num">${{ item.price }}</td>
                     <td class="num">${{ item.total_price }}</td>
                 </tr>
             {% endwith %}
         {% endfor %}
         <tr class="total">
-            <td>Total</td>
+            <td>{% translate 'Total' %}</td>
             <td colspan="3"></td>
             <td class="num">${{ cart.get_total_price }}</td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
-        <a href="{% url "app_shops:products_list" %}" class="button light">Continue shopping</a>
+        <a href="{% url "app_shops:products_list" %}" class="button light">{% translate 'Continue shopping' %}</a>
         <a href="{% url "orders:order_create" %}" class="button">
-            Checkout
+            {% translate 'Checkout' %}
         </a>
     </p>
 {% endblock %}

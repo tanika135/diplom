@@ -1,28 +1,28 @@
 {% extends 'app_shops/base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Order list
+    {% translate 'Order list' %}
 {% endblock %}
 
 {% block body %}
-    <h1>Orders:</h1>
+    <h1>{% translate 'Orders' %}:</h1>
     {% if object_list %}
         <div>
             {% for order in object_list %}
                 <div>
 
-                    <p>Order by {% firstof order.user.first_name order.user.username %}</p>
-                    <p>Адрес: {{ order.delivery_address }}</p>
+                    <p>{% translate 'Order by' %} {% firstof order.user.first_name order.user.username %}</p>
+                    <p>{% translate 'Adress' %}: {{ order.delivery_address }}</p>
 
                 </div>
             {% endfor %}
 
         </div>
     {% else %}
-        <h3>No orders yet</h3>
+        <h3>{% translate 'No orders yet' %}</h3>
     {% endif %}
     <div>
         <a href="{% url 'app_shops:create_shop' %}"
-        >Create a new order</a>
+        >{% translate 'Order list %}Create a new order' %}</a>
     </div>
 {% endblock %}

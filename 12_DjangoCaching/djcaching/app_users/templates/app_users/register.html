@@ -1,11 +1,11 @@
 {% extends 'app_shop/base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Register
+    {% translate 'Register' %}
 {% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1>{% translate 'Register' %}</h1>
     <div>
         <form method="post" enctype="multipart/form-data">
         {% csrf_token %}

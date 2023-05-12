@@ -2,21 +2,21 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans "Profile" %}
+    {% translate "Profile" %}
 {% endblock %}
 
 {% block body %}
     {% if request.user.is_authenticated %}
-        {% trans "Welcome to the site" %}, {{ request.user.username }}
+        {% translate "Welcome to the site" %}, {{ request.user.username }}
         {% if request.user.avatar %}
             <p>
             <img src="{{ request.user.avatar.url }}" alt="Smiley face" width="250" height="250">
             </p>
         {% else %}
-            <p>{% trans "Avatar is not loaded" %}</p>
+            <p>{% translate "Avatar is not loaded" %}</p>
         {% endif %}
     {% else %}
-        {% trans "You are not authorized" %}.
-        <a href="{% url 'login' %}">{% trans "Enter" %}</a>
+        {% translate "You are not authorized" %}.
+        <a href="{% url 'login' %}">{% translate "Enter" %}</a>
     {% endif %}
 {% endblock %}

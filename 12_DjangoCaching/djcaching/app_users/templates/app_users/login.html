@@ -1,7 +1,7 @@
 {% extends 'app_shop/base.html' %}
-
+{% load i18n %}
 {% block title %}
-    Login
+    {% translate 'Login' %}
 {% endblock %}
 
 {% block body %}
@@ -23,7 +23,7 @@
 {#            <input type="password" id="password" name="password" required>#}
 {#        </p>#}
 
-        <button type="submit">Login</button>
+        <button type="submit">{% translate 'Login' %}</button>
     </form>
 
 {% endblock %}

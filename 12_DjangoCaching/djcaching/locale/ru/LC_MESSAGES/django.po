@@ -1,0 +1,238 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-12 21:31+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\app_shops\models.py:6
+msgid "name"
+msgstr "Название"
+
+#: .\app_shops\templates\app_shops\create-shop.html:4
+msgid "Create order"
+msgstr "Создать заказ"
+
+#: .\app_shops\templates\app_shops\create-shop.html:8
+msgid "Create a new order"
+msgstr "Создать новый заказ"
+
+#: .\app_shops\templates\app_shops\create-shop.html:15
+#: .\app_shops\templates\app_shops\product_form.html:13
+msgid "Create"
+msgstr "Создать"
+
+#: .\app_shops\templates\app_shops\create-shop.html:20
+#, fuzzy
+#| msgid "No orders yet"
+msgid "Back to orders list"
+msgstr "Вернуться к списку заказов"
+
+#: .\app_shops\templates\app_shops\product_form.html:4
+#: .\app_shops\templates\app_shops\product_form.html:8
+msgid "Create product"
+msgstr "Создать товар"
+
+#: .\app_shops\templates\app_shops\product_form.html:18
+msgid "Back to products list"
+msgstr "Вернуться к списку товаров"
+
+#: .\app_shops\templates\app_shops\products-list.html:5
+#, fuzzy
+#| msgid "Products"
+msgid "Products list"
+msgstr "Список товаров"
+
+#: .\app_shops\templates\app_shops\shop_list.html:4
+#, fuzzy
+#| msgid "Order"
+msgid "Order list"
+msgstr "Список заказов"
+
+#: .\app_shops\templates\app_shops\shop_list.html:8
+#, fuzzy
+#| msgid "Order"
+msgid "Orders"
+msgstr "Заказы"
+
+#: .\app_shops\templates\app_shops\shop_list.html:14
+#, fuzzy
+#| msgid "Order"
+msgid "Order by"
+msgstr "Заказ"
+
+#: .\app_shops\templates\app_shops\shop_list.html:15
+#, fuzzy
+#| msgid "Address"
+msgid "Adress"
+msgstr "Адрес"
+
+#: .\app_shops\templates\app_shops\shop_list.html:22
+#: .\app_users\templates\app_users\about-me.html:66
+msgid "No orders yet"
+msgstr "Заказов нет"
+
+#: .\app_users\templates\app_users\about-me.html:6
+#: .\app_users\templates\app_users\about-me.html:10
+msgid "Personal"
+msgstr "Личный кабинет"
+
+#: .\app_users\templates\app_users\about-me.html:12
+msgid "Detail"
+msgstr "Детали"
+
+#: .\app_users\templates\app_users\about-me.html:13
+msgid "Balance"
+msgstr "Баланс"
+
+#: .\app_users\templates\app_users\about-me.html:15
+msgid "Promotions"
+msgstr "Акции"
+
+#: .\app_users\templates\app_users\about-me.html:18
+#: .\app_users\templates\app_users\about-me.html:37
+msgid "Name"
+msgstr "Название"
+
+#: .\app_users\templates\app_users\about-me.html:19
+#: .\app_users\templates\app_users\about-me.html:38
+msgid "Description"
+msgstr "Описание"
+
+#: .\app_users\templates\app_users\about-me.html:20
+#: .\app_users\templates\app_users\about-me.html:56
+msgid "Products"
+msgstr "Товары"
+
+#: .\app_users\templates\app_users\about-me.html:29
+msgid "No promotions yet"
+msgstr "Акций пока нет"
+
+#: .\app_users\templates\app_users\about-me.html:33
+msgid "Offers"
+msgstr "Предложения"
+
+#: .\app_users\templates\app_users\about-me.html:39
+#: .\cart\templates\cart\detail.html:13
+msgid "Shop"
+msgstr "Магазин"
+
+#: .\app_users\templates\app_users\about-me.html:43
+msgid "No offers yet"
+msgstr "Предложений пока нет"
+
+#: .\app_users\templates\app_users\about-me.html:53
+msgid "Order"
+msgstr "Заказ"
+
+#: .\app_users\templates\app_users\about-me.html:54
+msgid "Address"
+msgstr "Адрес"
+
+#: .\app_users\templates\app_users\about-me.html:55
+msgid "City"
+msgstr "Город"
+
+#: .\app_users\templates\app_users\about-me.html:74
+msgid "User is anonymous"
+msgstr "Пользователь не авторизован"
+
+#: .\app_users\templates\app_users\account.html:5
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\app_users\templates\app_users\account.html:10
+msgid "Welcome to the site"
+msgstr "Добро пожаловать на сайт"
+
+#: .\app_users\templates\app_users\account.html:16
+msgid "Avatar is not loaded"
+msgstr "Аватар не загружен"
+
+#: .\app_users\templates\app_users\account.html:19
+msgid "You are not authorized"
+msgstr "Вы не авторизованы"
+
+#: .\app_users\templates\app_users\account.html:20
+msgid "Enter"
+msgstr "Ввод"
+
+#: .\app_users\templates\app_users\balance_update_form.html:4
+#: .\app_users\templates\app_users\balance_update_form.html:8
+msgid "Update product"
+msgstr "Обновить товар"
+
+#: .\app_users\templates\app_users\balance_update_form.html:13
+msgid "Update"
+msgstr "Обновить"
+
+#: .\app_users\templates\app_users\login.html:4
+#: .\app_users\templates\app_users\login.html:26
+msgid "Login"
+msgstr "Войти"
+
+#: .\app_users\templates\app_users\register.html:4
+#: .\app_users\templates\app_users\register.html:8
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: .\cart\templates\cart\detail.html:5 .\cart\templates\cart\detail.html:8
+msgid "Your shopping cart"
+msgstr "Ваша корзина"
+
+#: .\cart\templates\cart\detail.html:12
+#, fuzzy
+#| msgid "Products"
+msgid "Product"
+msgstr "Товар"
+
+#: .\cart\templates\cart\detail.html:14
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\cart\templates\cart\detail.html:15 .\cart\templates\cart\detail.html:27
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\cart\templates\cart\detail.html:16
+msgid "Unit price"
+msgstr "Цена"
+
+#: .\cart\templates\cart\detail.html:17
+msgid "Price"
+msgstr "Сумма"
+
+#: .\cart\templates\cart\detail.html:34
+msgid "Total"
+msgstr "Всего"
+
+#: .\cart\templates\cart\detail.html:41
+msgid "Continue shopping"
+msgstr "Продолжить покупки"
+
+#: .\cart\templates\cart\detail.html:43
+msgid "Checkout"
+msgstr "Проверка"
+
+#: .\djcaching\settings.py:135
+msgid "Russian"
+msgstr "Русский"
+
+#: .\djcaching\settings.py:136
+msgid "English"
+msgstr "Английский"

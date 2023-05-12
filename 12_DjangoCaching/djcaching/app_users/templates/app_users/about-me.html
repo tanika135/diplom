@@ -7,17 +7,17 @@
 {% endblock %}
 
 {% block body %}
-    <h1>personal</h1>
+    <h1>{% translate 'Personal' %}</h1>
     {% if user.is_authenticated %}
-        <h2>Detail</h2>
-        <h3>Balance : {{ balance }}</h3>
+        <h2>{% translate 'Detail' %}</h2>
+        <h3>{% translate 'Balance' %} : {{ balance }}</h3>
         <div>
-            <h3>Promotions : </h3>
+            <h3>{% translate 'Promotions' %} : </h3>
             {% if promotions %}
                 {% for action in promotions %}
-                    <p>Name #: {{ action.name }}</p>
-                    <p>Description: {{ action.description }}</p>
-                    <p>Products:
+                    <p>{% translate 'Name' %} #: {{ action.name }}</p>
+                    <p>{% translate 'Description' %}: {{ action.description }}</p>
+                    <p>{% translate 'Products' %}:
                         <ul>
                         {% for item in action.products.all %}
                             <li>{{ item.name }}</li>
@@ -26,21 +26,21 @@
                     </p>
                 {% endfor %}
             {% else %}
-                <h3>No promotions yet</h3>
+                <h3>{% translate 'No promotions yet' %}</h3>
             {% endif %}
         </div>
         <div>
-            <h3>Offers :</h3>
+            <h3>{% translate 'Offers' %} :</h3>
             {% if offers %}
                 <ul>
                 {% for offer in offers %}
-                    <li>Name #: {{ offer.name }}</li>
-                    <li>Description: {{ offer.description }}</li>
-                    <li>Shop: {{ offer.shop.name }}</li>
+                    <li>{% translate 'Name' %} #: {{ offer.name }}</li>
+                    <li>{% translate 'Description' %}: {{ offer.description }}</li>
+                    <li>{% translate 'Shop' %}: {{ offer.shop.name }}</li>
                 {% endfor %}
                 </ul>
             {% else %}
-                <h3>No offers yet</h3>
+                <h3>{% translate 'No offers yet' %}</h3>
             {% endif %}
         </div>
 
@@ -50,10 +50,10 @@
                     <h3>History :</h3>
                     {% if payment_history %}
                         {% for order in payment_history %}
-                            <p>Order #: {{ order.id }}</p>
-                            <p>Address: {{ order.address }}</p>
-                            <p>City: {{ order.city }}</p>
-                            <p>Products:
+                            <p>{% translate 'Order' %} #: {{ order.id }}</p>
+                            <p>{% translate 'Address' %}: {{ order.address }}</p>
+                            <p>{% translate 'City' %}: {{ order.city }}</p>
+                            <p>{% translate 'Products' %}:
                                 <ul>
                                 {% for item in order.items.all %}
                                     <li>{{ item.product.name }} - {{ item.price }} - {{ item.quantity }}</li>
@@ -63,7 +63,7 @@
 
                         {% endfor %}
                     {% else %}
-                        <h3>No orders yet</h3>
+                        <h3>{% translate 'No orders yet' %}</h3>
                     {% endif %}
                 </div>
              {% endblock %}
@@ -71,6 +71,6 @@
 
 
     {% else %}
-        <h2>User is anonymous</h2>
+        <h2>{% translate 'User is anonymous' %}</h2>
     {% endif %}
 {% endblock %}

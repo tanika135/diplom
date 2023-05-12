@@ -1,7 +1,8 @@
 {% extends 'app_shops/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    Products list
+    {% translate 'Products list' %}
 {% endblock %}
 
 {% block body %}
@@ -33,7 +34,7 @@
 
 
     {% else %}
-        <h3>No products yet</h3>
+        <h3>{% translate 'No products yet' %}</h3>
     {% endif %}
 
 {% endblock %}
