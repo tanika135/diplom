@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('users/', include('app_users.urls')),
@@ -26,3 +27,7 @@ urlpatterns = [
     path('app_shops/', include('app_shops.urls')),
     path('app_users/', include('app_users.urls')),
 ]
+
+urlpatterns += i18n_patterns(
+    path('users/', include('app_users.urls')),
+)
