@@ -10,6 +10,7 @@ def page_with_cached_fragments(request):
         'shops': shops
     })
 
+
 class ProductDetailsView(DetailView):
     template_name = 'app_shops/product-details.html'
     queryset = Product.objects

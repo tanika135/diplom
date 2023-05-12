@@ -11,8 +11,10 @@ from app_shops.models import Offers, Actions
 from orders.models import Order
 from .forms import BalanceForm
 from .models import Profile, Balance
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(redirect_field_name='next', login_url='/users/login/')
 def user_account(request):
     username = request.user.username
     balance = get_balance(request.user.id)
