@@ -25,7 +25,7 @@ class CartViewTestCase(TestCase):
         cls.shopStock.delete()
 
     def test_cart_add(self):
-        print(reverse('cart:cart_add', kwargs={'product_id': self.product.pk}))
+
         response = self.client.post(
             reverse('cart:cart_add', kwargs={'product_id': self.product.pk}),
             {
