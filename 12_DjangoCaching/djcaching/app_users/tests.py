@@ -3,6 +3,7 @@ from datetime import datetime
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.utils import translation
 
 from app_shops.models import Actions, Offers
 from app_users.models import Balance
@@ -14,6 +15,7 @@ class UsersViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        translation.activate('ru')
         cls.user = User.objects.create_user(username='bob_test', password='qwerty')
         cls.balance = Balance.objects.create(amount=10000, user=cls.user)
 

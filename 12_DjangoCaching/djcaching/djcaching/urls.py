@@ -18,6 +18,17 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
+    # path('users/', include('app_users.urls')),
+    # path('admin/', admin.site.urls),
+    # path('', include('app_pages.urls', namespace='app_pages')),
+    # path('orders/', include('orders.urls', namespace='orders')),
+    # path('cart/', include('cart.urls', namespace='cart')),
+    #
+    # path('app_shops/', include('app_shops.urls')),
+    # path('app_users/', include('app_users.urls')),
+]
+
+urlpatterns += i18n_patterns(
     path('users/', include('app_users.urls')),
     path('admin/', admin.site.urls),
     path('', include('app_pages.urls', namespace='app_pages')),
@@ -26,8 +37,4 @@ urlpatterns = [
 
     path('app_shops/', include('app_shops.urls')),
     path('app_users/', include('app_users.urls')),
-]
-
-urlpatterns += i18n_patterns(
-    path('users/', include('app_users.urls')),
 )

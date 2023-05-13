@@ -1,11 +1,13 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import translation
 
 from app_shops.models import Product, Shop
 
 
 class CachedTestCase(TestCase):
     def test_page_with_cached_fragments(self):
+        translation.activate('ru')
         response = self.client.get(reverse('app_shops:page_with_cached_fragments'))
         self.assertTemplateUsed(response, 'app_shops/page_with_cached_fragments.html')
         self.assertQuerySetEqual(
@@ -17,6 +19,7 @@ class CachedTestCase(TestCase):
 
 class ProductsListViewTestCase(TestCase):
     def test_product_list_view(self):
+        translation.activate('ru')
         response = self.client.get(reverse('app_shops:products_list'))
         self.assertTemplateUsed(response, 'app_shops/products-list.html')
         self.assertQuerySetEqual(
@@ -29,6 +32,7 @@ class ProductsListViewTestCase(TestCase):
 class ProductDetailsViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
+        translation.activate('ru')
         super().setUpClass()
         cls.product = Product.objects.create(name='Best Product')
 
