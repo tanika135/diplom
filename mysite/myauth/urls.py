@@ -11,6 +11,7 @@ from .views import (
     RegisterView,
     FooBarView,
     ProfilesListView,
+    HelloView,
 )
 
 
@@ -26,6 +27,7 @@ urlpatterns = [
         ),
         name='login'),
 
+    path('hello/', HelloView.as_view(), name='hello'),
     path('logout/', MyLogoutView.as_view(), name='logout'),
     path('profiles/', ProfilesListView.as_view(), name='profiles-list'),
     path('about-me/<int:pk>/', AboutMeView.as_view(), name='about-me'),
