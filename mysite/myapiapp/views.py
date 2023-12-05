@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.views import APIView
 
+from .serializers import GroupsSerializer
+
 
 @api_view()
 def hello_world_view(request: Request) -> Response:
@@ -13,5 +15,6 @@ def hello_world_view(request: Request) -> Response:
 class GroupsListView(APIView):
     def get(self, request: Request) -> Response:
         groups = Group.objects.all()
-        data = [group.name for group in groups]
-        return Response({'groups': data})
+        serialized = GroupsSerializer(groups, many=True)
+        # data = [group.name for group in groups]
+        return Response({'groups': serialized.data})
