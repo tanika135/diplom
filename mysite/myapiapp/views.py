@@ -16,6 +16,7 @@ def hello_world_view(request: Request) -> Response:
 class GroupsListView(ListCreateAPIView):
     """
     Django REST Framework Mixins
+    появляется поле для добавления товара
     """
     queryset = Group.objects.all()
     serializer_class = GroupsSerializer
