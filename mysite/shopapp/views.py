@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema
 
 from .forms import ProductForm, OrderForm
 from .forms import GroupForm
@@ -17,6 +18,7 @@ from .models import Product, Order, ProductImage
 from .serializers import ProductSerializer
 
 
+@extend_schema(description='Product views CRUD')
 class ProductViewSet(ModelViewSet):
     """
     ViewSet в Django REST Framework
@@ -44,6 +46,17 @@ class ProductViewSet(ModelViewSet):
         'price',
         'discount',
     ]
+
+    @extend_schema(
+        summary='Get one product by ID',
+        description='Retrieves product, returns 404 if not found',
+        responses={
+            200: ProductSerializer,
+            404: None,
+        }
+    )
+    def retrieve(self, *args, **kwargs):
+        return super().retrieve(*args, **kwargs)
 
 
 class ShopIndexView(View):
