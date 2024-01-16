@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, OpenApiResponse
 
 from .forms import ProductForm, OrderForm
 from .forms import GroupForm
@@ -52,7 +52,7 @@ class ProductViewSet(ModelViewSet):
         description='Retrieves product, returns 404 if not found',
         responses={
             200: ProductSerializer,
-            404: None,
+            404: OpenApiResponse(description='Product not found'),
         }
     )
     def retrieve(self, *args, **kwargs):
