@@ -1,3 +1,4 @@
+import logging
 from timeit import default_timer
 
 from django.contrib.auth.models import Group
@@ -16,6 +17,9 @@ from .forms import ProductForm, OrderForm
 from .forms import GroupForm
 from .models import Product, Order, ProductImage
 from .serializers import ProductSerializer
+
+
+log = logging.getLogger(__name__)
 
 
 @extend_schema(description='Product views CRUD')
@@ -71,6 +75,8 @@ class ShopIndexView(View):
             'products': products,
             'items': 5,
         }
+        log.debug('Products for shop index: %s', products)
+        log.info('Rendering shop index')
         return render(request, 'shopapp/shop-index.html', context=context)
 
 
